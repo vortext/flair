@@ -35,7 +35,7 @@ class TagTrain:
         loss_txt = os.path.join(self.base_path, "loss.txt")
         open(loss_txt, "w", encoding='utf-8').close()
 
-        optimizer = torch.optim.SGD(self.model.parameters(), lr=learning_rate)
+        optimizer = torch.optim.Adam(self.model.parameters(), lr=learning_rate)
 
         train_data = self.corpus.train
 

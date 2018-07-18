@@ -102,7 +102,7 @@ class StackedEmbeddings(TextEmbeddings):
 class WordEmbeddings(TextEmbeddings):
     """Standard static word embeddings, such as GloVe or FastText."""
 
-    def __init__(self, embeddings):
+    def __init__(self, embeddings, mmap="r"):
         """Init one of: 'glove', 'extvec', 'ft-crawl', 'ft-german'.
         Constructor downloads required files if not there."""
 
@@ -151,7 +151,7 @@ class WordEmbeddings(TextEmbeddings):
         self.name = embeddings
         self.static_embeddings = True
 
-        self.precomputed_word_embeddings = gensim.models.KeyedVectors.load(embeddings)
+        self.precomputed_word_embeddings = gensim.models.KeyedVectors.load(embeddings, mmap=mmap)
 
         self.known_words = set(self.precomputed_word_embeddings.index2word)
 
